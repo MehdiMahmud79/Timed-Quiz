@@ -6,7 +6,6 @@
 + This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code.
 + It is responsive user interface that adapts to multiple screen sizes.
 
-The password can include; Lower case letters, Upper case letters, Numbers and Special characters. 
 ```
 
 
