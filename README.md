@@ -18,13 +18,12 @@ The following animation shows the web application's appearance and functionality
 ![The Password Generator application displays a red button to "Generate Password".](./screen.gif)
 
 
-Description
-- The quiz is made up of 5 questions 
-- The user has 50 seconds to complete the quiz
-- Everytime the user selects an answer:
-  - A message tells them if the answer was correct/incorrect
-  - If the answer was incorrect, 10 seconds is deducted from the timer
-- The game ends once the timer hits 0 or the user answers all the questions
+### The Quiz Description
+- you will be asked 5 questions.
+- you have 50 seconds in totall to answer all the questions.
+- you will be informed if your answer is coreect or wrong.
+- The timer will be deducted by 10sec if the naswer is incorrect.
+- when you answer all the question s or the timer hits 0 the game will end.
 ```
 The score based on the number of correc answered questions.
 ```
