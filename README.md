@@ -1,2 +1,38 @@
-# Timed-Quiz
-A timed quiz on JavaScript fundamentals that stores high scores
+## JavaScript: Code Quiz
+
+## Features of this application
+```
++ This project will generate random pre-stored multiple choice questions. 
++ This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code.
++ It is responsive user interface that adapts to multiple screen sizes.
+
+The password can include; Lower case letters, Upper case letters, Numbers and Special characters. 
+```
+
+
+
+## Mock-Up
+
+The following animation shows the web application's appearance and functionality:
+
+![The Password Generator application displays a red button to "Generate Password".](./screen.gif)
+
+
+Description
+- The quiz is made up of 5 questions 
+- The user has 50 seconds to complete the quiz
+- Everytime the user selects an answer:
+  - A message tells them if the answer was correct/incorrect
+  - If the answer was incorrect, 10 seconds is deducted from the timer
+- The game ends once the timer hits 0 or the user answers all the questions
+```
+The score based on the number of correc answered questions.
+```
+
+## Websites
+* Github: https://github.com/MehdiMahmud79/Timed-Quiz
+* Deployed: https://mehdimahmud79.github.io/Timed-Quiz/
+
+- - -
+© 2021 Mehdi.
+- - -
