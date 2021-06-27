@@ -71,8 +71,17 @@ function getResult(choicesElement){
     if(tmp===correctAnswers)wrongAnswers++;
         choicesElement.classList.add("answered");
     }
-answersStatus.innerHTML="Correct answers "+(correctAnswers ) + "  and incorrect answers " + wrongAnswers;
+    if(correctAnswers>1 && wrongAnswers>1){
+    answersStatus.innerHTML= "("+ correctAnswers + ") "+ "Correct answers and (" +  wrongAnswers + ") wrong answers";
+    }else if(correctAnswers>1 && wrongAnswers<=1){
+      answersStatus.innerHTML= "("+ correctAnswers + ") "+ "Correct answers and (" +  wrongAnswers + ") wrong answer";
+      }else if(correctAnswers<=1 && wrongAnswers<=1){
+        answersStatus.innerHTML= "("+ correctAnswers + ") "+ "Correct answer and (" +  wrongAnswers + ") wrong answer";
+        }else{
+          answersStatus.innerHTML= "("+ correctAnswers + ") "+ "Correct answer and (" +  wrongAnswers + ") wrong answers";
+        }
 
+    
 }
 // ___________________________get a new question in a random way______________
 function getNewQuestion(){
