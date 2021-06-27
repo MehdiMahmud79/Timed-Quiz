@@ -37,7 +37,7 @@ var questions = [
     },
     {
         title:"Where in an HTML document is the correct place to refer to an external style sheet?",
-        choices: ["At the end of the document", "In the <head> section", "In the body section", "just before the footer section"],
+        choices: ["At the end of the document", "In the head section", "In the body section", "just before the footer section"],
         answerIndex: 1
     }
   ];
