@@ -18,10 +18,11 @@ The following animation shows the web application's appearance and functionality
 
 ### The Quiz Description
 - you will be asked 5 questions.
-- you have 50 seconds in totall to answer all the questions.
+- you have 75 seconds in totall to answer all the questions.
 - you will be informed if your answer is coreect or wrong.
 - The timer will be deducted by 10sec if the naswer is incorrect.
 - when you answer all the question s or the timer hits 0 the game will end.
+- questions and answres are shuffled.
 ```
 The score based on the number of correc answered questions.
 ```
