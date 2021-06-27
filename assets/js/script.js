@@ -156,11 +156,12 @@ function processInput(event) {
       ScoreBox.classList.remove("hide");
       ResultBox.classList.add("hide");
       }
-     
+   
   }
 
   
   function saveHighscoreEntry(highscoreEntry) {
+      console.log("getting the scores from the localStorage");
     var currentScores = localStorage.getItem('scoreList');
     // console.log("current score "+ currentScores);
 
@@ -170,7 +171,10 @@ function processInput(event) {
         currentScores= [];
     }
     placeEntryInHighscoreList(highscoreEntry, currentScores);
+    console.log("getting the scores from the localStorage");
+  
     localStorage.setItem('scoreList', JSON.stringify(currentScores));
+    generateHighscoresTable(); 
   }
   
   function placeEntryInHighscoreList(newEntry, scoreList) {
@@ -180,7 +184,7 @@ function processInput(event) {
   
   function getNewScoreIndex(newEntry, scoreList) {
     if (scoreList.length > 0) {
-      for (let i = 0; i < scoreList.length; i++) {
+      for (var i = 0; i < scoreList.length; i++) {
         if (scoreList[i].score <= newEntry.score) {
           return i;
         }
@@ -276,7 +280,7 @@ function resetQuiz(){
      availableQuestions=[];
      askedQuestions=[];
      availableOptions=[];
-    
+     initialInput.value=""
      correctAnswers=0;
      wrongAnswers=0;   
      return;
@@ -296,11 +300,14 @@ function tryAgain(){
 
 
 //Loads table when page loaded
-generateHighscoresTable();   
+  
 
 
 function generateHighscoresTable() {
-  let highscores = localStorage.getItem("scoreList");
+    while (highScoresTable.children.length > 1) {
+        highScoresTable.removeChild(highScoresTable.lastChild);
+      }
+  var  highscores = localStorage.getItem("scoreList");
   if (highscores) {
     addHighscoreTableRows(highscores);
   } 
