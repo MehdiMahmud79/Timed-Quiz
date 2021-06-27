@@ -50,7 +50,6 @@ function shuffle (Array) {
  
 function getResult(choicesElement){
     var tmp=correctAnswers;
-    console.log(choicesElement.id)
     var id=+choicesElement.id;
     for(var i=0;i<optionContainer.children.length;i++){
     optionContainer.children[i].classList.add("answered");
@@ -131,26 +130,7 @@ do{
 }
 
 /******** SUBMITTING INITIALS ********/ 
-function displayFormError(errorMessage) {
-    ERROR_MESSAGE.textContent = errorMessage;
-    if (!initialInput.classList.contains("error")) {
-        initialInput.classList.add("error");
-    }
-  }
-function isInputValid(initials) {
-    let errorMessage = "";
-    if (initials === "") {
-      errorMessage = "You can't submit empty initials!";
-      displayFormError(errorMessage);
-      return false;
-    } else if (initials.match(/[^a-z]/ig)) {
-      errorMessage = "Initials may only include letters."
-      displayFormError(errorMessage);
-      return false;
-    } else {
-      return true;
-    }
-  }
+
 function processInput(event) {
     event.preventDefault();
   
@@ -182,7 +162,7 @@ function processInput(event) {
   
   function saveHighscoreEntry(highscoreEntry) {
     var currentScores = localStorage.getItem('scoreList');
-    console.log("current score "+ currentScores);
+    // console.log("current score "+ currentScores);
 
     if (currentScores) {
         currentScores = JSON.parse(currentScores);
@@ -211,32 +191,43 @@ function processInput(event) {
 
   
 function showResults(){
+    console.log("showresults function");
+
     if (totalTime < 0)totalTime=0;
     ResultBox.querySelector(".RemainingTime").innerHTML=totalTime;
     ResultBox.querySelector(".total-correct").innerHTML=correctAnswers;
     ResultBox.querySelector(".total-wrong").innerHTML=wrongAnswers;
     ResultBox.querySelector("#yourScore").innerHTML= totalTime+correctAnswers;
-    
+    return;
 
 }
 function QuizOver(){
+    console.log("Quiz Over function");
+    clearInterval(totalTimeInterval);
+
     QuizBox.classList.add("hide");
     ResultBox.classList.remove("hide");
     ScoreBox.classList.add("hide");
-
-    showResults()
+    HomeBox.classList.add("hide");
+    showResults();
+    return;
     
 }
 
 function next(){
-    if(questionCounter===questions.length){
+    console.log("next function");
+
+    if(questionCounter===questions.length | totalTime===0){
         console.log("Quiz Over");
-        QuizOver()
+        QuizOver();
+        clearInterval(totalTimeInterval);
+        return;
+
     } else{
 
         getNewQuestion();
-        return;
     }
+    return;
 }
 /******** TIME ********/ 
   function startTimer() {
@@ -245,19 +236,19 @@ function next(){
       TimeRemaining.textContent =  totalTime;;
       
       if (totalTime <= 0) {
-        
-        clearInterval(totalTimeInterval);
         QuizOver();
-        totalTime =0;
+        console.log("game over due to time");
+        clearInterval(totalTimeInterval);
         return;
       }
   
     }, 1000);
-    return;
   }
   
 
 function QuizStart(){
+    console.log("Start the Quiz");
+  
     startTimer();
     HomeBox.classList.add("hide");
     QuizBox.classList.remove("hide");
