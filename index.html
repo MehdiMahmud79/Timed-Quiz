@@ -11,7 +11,7 @@
 <header>
    <h1>Timed Quiz</h1> 
 </header>
-
+    <!--a section to start the quiz-->
     <div class="home-box custom-box">
         <h3>Instruction</h3>
         <p>Tota number of questions: <span class="total-question"> 7</span></p>
@@ -21,24 +21,17 @@
         </p>
         <button type="button" class="btn" onclick="QuizStart()">Start</button>
     </div>
+    <!-- card section for questions and options -->
     <div class="quiz-box custom-box hide">
         <div id="TimeLabel">TIME</div>
         <div class="box-header">
-           
-            <div class="question-number"></div>
-                <!-- Question 1 of 5 --> 
-                
+            <div class="question-number"></div> 
            <spn class="remainingTime">75</span>
-           
         </div>
         
-
         <div class="question-text">
-            <!-- Commonly used data types DO NOT include: -->
         </div>
         <div class="option-container">
-
-
         </div>
         <div class="next-question-btn">
             <button type="button" class="btn" id="nextBtn" onclick="next()" disabled>Next</button>
@@ -46,12 +39,11 @@
         <hr>
         <div class="answers-indicator">
             <div class="answers-status">
-                <!-- Question 1 of 5 -->
             </div>
-            <!-- <div> choices</div> -->
         </div>
        
     </div>
+    <!-- Result section to show the outcome of the Quiz -->
     <div class="result-box custom-box hide">
         <h1>Quiz Result</h1>
         <table>
@@ -87,6 +79,7 @@
         </section>
 
     </div>
+    <!-- This section will will show the scores  -->
     <div class="score-section custom-box hide" >
             <h1>Highscores</h1>
             <table id="highscores-table">
@@ -101,15 +94,18 @@
                 <button type="button" class="btn" onclick="tryAgain()">Try Again</button>
             </div>
     </div>
-    <script src="./assets/js/quesions.js"></script>
-    <script src="./assets/js/script.js"></script>
-
+    <!-- Footer section  -->
     <footer>
         <h4>
         Copyright ©2021 All rights reserved | It is made with
         <span role="img" aria-label="heart">❤️</span>
         by Mehdi
         </h4>
+
     </footer>
+            <!-- javascript links and quesions  -->
+
+            <script src="./assets/js/quesions.js"></script>
+            <script src="./assets/js/script.js"></script>
 </body>
 </html>

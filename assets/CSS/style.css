@@ -10,18 +10,20 @@
   --btn:red;
   --Grey:Gray;
   --myblue: DodgerBlue;
+  --myGreen:rgb(20, 78, 2);
   --oulinecolor: #e0eae4;
   --text:#fff;
+  --backcolor:#ffffff;
+  --boxBcolor:#ffff:
 }
 /* styling the body,HTML and wrapper section */
 html,
-body,
-.wrapper {
+body {
   min-height: 300px;
   font-size: 16px;
   margin: 0;
   padding: 0;
-  background-color: #242424;
+  background-color:var(--backcolor);
   color:#555555;
   font-weight: normal; 
   font-size: 16px;
@@ -49,16 +51,10 @@ body,
   font-weight: 600;
   position: relative;
 }
-/* .home-box p span::before{
-  content: 'ggg';
-  width:20px;
-  height:20px;
-  background: red;
-  
-} */
+
 .custom-box{
   max-width: 700px;
-  background: #ffff;
+  background: var(--boxBcolor);
   margin:20px auto;
   padding:30px;
   border-radius: 10px;
@@ -85,7 +81,7 @@ body,
 .box-header{
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid var(--oulinecolor);
 
 }
 .box-header .question-number{
@@ -99,16 +95,16 @@ body,
   position: relative;
   font-size: 30px;
   text-align: center;
-  color: #ff0000;
+  color: red;
   font-weight:bolder;
   padding: 4px;
   margin-bottom: 20px;
   line-height: 27px;
   width:50px;
   height:40px;
-  background-color: rgb(228, 228, 228);
-  border:2px solid rgb(21, 88, 0);
-  box-shadow:  0px 0px 10px #0ea376;
+  background-color: var(--oulinecolor);
+  border:2px solid var(--myGreen);
+  box-shadow:  0px 0px 10px var(--myGreen);
 
   border-radius: 20%;
 }
@@ -149,12 +145,12 @@ body,
 .quiz-box .option-container .option.correct{
   background-color:green;
   font-weight: 800;
-  color: #fff;
+  color: var(--text);
 }
 .quiz-box .option-container .option.wrong{
-  background-color:rgb(255, 0, 0);
+  background-color:red;
   font-weight: 800;
-  color: #fff;
+  color: var(--text);
 }
 .quiz-box .option-container .option.answered{
   pointer-events: none;
@@ -166,8 +162,6 @@ body,
   100%{
     opacity:1;
   }
-
-  
 }
 
 .quiz-box .answers-indicator div{
@@ -188,32 +182,6 @@ body,
   cursor:not-allowed;
 }
 
-
-
-
-.container{
-  background: var(--back);
-  padding: 20px;
-  margin-bottom: 20px;
-  color:var(--text);
-}
-nav {
-  padding: 15px;
-  border-bottom: 1px solid #CECECE;
-  display: flex;
-  justify-content:space-around;
-  align-content:space-around ;
-}
-a {
-  color: Maroon;
-  text-decoration: none;
-  font-size: 20px;
-
-  transition: color 0.2s ease-in-out;
-}
-.text-center{
-  text-align: center;
-}
 .btn{
   cursor: pointer;
   border:none;
@@ -228,7 +196,7 @@ a {
 }
 
 .home-box ,.result-box, .quiz-box, .score-section{
-  box-shadow:  -10px 10px 20px #093f0c;
+  box-shadow:  -10px 10px 20px var(--myGreen);
 }
 .result-box{
   text-align: center;
@@ -236,7 +204,19 @@ a {
 .result-box.hide{
   display: none;
 }
-.result-box h1, , .score-section h1ß{
+ 
+.score-section {
+  display: flex;
+  flex-direction: column;
+
+  width: 90%;
+  /* margin: 20px auto; */
+  height: 75%;
+  box-sizing: border-box;
+  padding: 20px auto;
+}
+
+.result-box h1, .score-section h1{
   font-size: 36px;
   line-height: 42px;
   color: #009688;
@@ -247,7 +227,7 @@ a {
   margin:30px 0;
 }
 .result-box table td{
-  border:1px solid #cccccc;
+  border:1px solid var(--oulinecolor);
   padding:8px 15px;
   font-weight: 500;
   color: #000000;
@@ -303,17 +283,7 @@ margin: 20px auto;
     color:#cccccc;
 
   }
- 
-  .score-section {
-    display: flex;
-    flex-direction: column;
-  
-    width: 90%;
-    margin: auto;
-    height: 75%;
-    box-sizing: border-box;
-    padding: 20px auto;
-  }
+
 
 
  /*_________Highscores*****__________*/
@@ -322,7 +292,7 @@ table {
 }
 
 tr:nth-child(even) {
-  background-color: #EBEBEB;
+  background-color: var(--oulinecolor);
 }
 
 td, th {
@@ -330,7 +300,7 @@ td, th {
 }
 
 th {
-  border-bottom: 1px solid #CECECE;
+  border-bottom: 1px solid var(--oulinecolor);
 }
 
 td {
