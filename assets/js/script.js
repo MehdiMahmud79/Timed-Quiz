@@ -10,14 +10,14 @@ var ScoreBox=document.querySelector(".score-section");
 var initialInput = document.getElementById("initials");
 var submitScore = document.getElementById("submit-score");
 var nextBtn=document.querySelector("#nextBtn");
-
-//Highscores
 var highScoresTable = document.getElementById("highscores-table");
 var clearScoresBtn= document.getElementById("clear-highscores");
 
+//  add addEventListeners
 clearScoresBtn.addEventListener('click', clearScores);
 
 submitScore.addEventListener('submit', processInput);
+// initilize the variables_______________________________________
 
 var  totalTime = 75;
 var questionCounter=0;
@@ -30,13 +30,14 @@ var correctAnswers=0;
 var wrongAnswers=0;
 
 
-
+// ___ creat list of questions from the question list________
 function setAvailableQuestions(){
     var totalQuestion = questions.length;
     for(var i=0;i<totalQuestion;i++){
         availableQuestions.push(questions[i]);
     }
 }
+//  randomize the question array to avoid pattern__________
 function shuffle (Array) {
   var   n= Array.length;
     for(var i = n - 1; i > 0; i--) {
@@ -47,7 +48,7 @@ function shuffle (Array) {
     }
   return  Array;
   }
- 
+//  results check and giving the style to the selected choice_____
 function getResult(choicesElement){
     var tmp=correctAnswers;
     var id=+choicesElement.id;
@@ -73,6 +74,7 @@ function getResult(choicesElement){
 answersStatus.innerHTML="Correct answers "+(correctAnswers ) + "  and incorrect answers " + wrongAnswers;
 
 }
+// ___________________________get a new question in a random way______________
 function getNewQuestion(){
     nextBtn.disabled=true;
     var optionsLength=currentQuestion.choices.length;
@@ -98,7 +100,7 @@ function getNewQuestion(){
 
  optionsLength=currentQuestion.choices.length;
 
-//________options_________
+//________Creat choices elemets n the page_________________________________
 
 // for (var i=0;i<optionsLength;i++){
 //     availableOptions.push(i);
@@ -106,7 +108,8 @@ function getNewQuestion(){
 // shuffle(availableOptions);
 var i=0;
 animationDelay=0.3;
-do{
+
+do{  //creat choices elements in the HTML file
     var optionDiv=document.createElement("div");
 
     optionDiv.innerHTML=currentQuestion.choices[i];
@@ -118,71 +121,63 @@ do{
     
     optionContainer.appendChild(optionDiv)
     optionDiv.setAttribute("onclick","getResult(this)");
-    // 
-
     i++;
-}while(i<optionsLength)
-
-
-
+    } while(i<optionsLength)
 
     questionCounter++;
 }
 
-/******** SUBMITTING INITIALS ********/ 
+//________________________________________Submit the form section code____________________________________ 
 
 function processInput(event) {
-    event.preventDefault();
+    event.preventDefault();   // prevent the actual form button behaviour
   
     var initials = initialInput.value.toUpperCase();
     
-    if (initials === "") {
+    if (initials === "") { // check if the initils contains any symbols and numbers
         alert("You can't submit empty initials!");
         return
       } else if (initials.match(/[^a-z]/ig)) {
         alert ("Initials may only include letters.");
         return
       } else {
-         
-       var score = correctAnswers+totalTime;
+        // set the score as the summation of the remaining time and the number of the correct answers 
+        var score = correctAnswers+totalTime;
 
-      var highscoreEntry = {
-        initials: initials,
-        score: score,
+        // creat the score object containg th einitials and the score
+        var newEntry = {
+            initials: initials,
+            score: score,
          };
-        //  console.log("before adding score "+ highscoreEntry);
-        //  localStorage.setItem('scoreList', JSON.stringify(highscoreEntry));
-      saveHighscoreEntry(highscoreEntry); 
+      //save the new score to the local storage
+      highScoreToLocal(newEntry); 
       ScoreBox.classList.remove("hide");
       ResultBox.classList.add("hide");
       }
    
   }
 
-  
-  function saveHighscoreEntry(highscoreEntry) {
-      console.log("getting the scores from the localStorage");
-    var currentScores = localStorage.getItem('scoreList');
-    // console.log("current score "+ currentScores);
+  function highScoreToLocal(newEntry) {
+    //  getting the scores from the localStorage 
+    var savedScores = localStorage.getItem('scoreList');
 
-    if (currentScores) {
-        currentScores = JSON.parse(currentScores);
+    if (savedScores) {
+        savedScores = JSON.parse(savedScores);
     } else {
-        currentScores= [];
+        savedScores= [];
     }
-    placeEntryInHighscoreList(highscoreEntry, currentScores);
-    console.log("getting the scores from the localStorage");
-  
-    localStorage.setItem('scoreList', JSON.stringify(currentScores));
+    
+    var newScoreIndex = sortTheScores(newEntry, savedScores);
+    savedScores.splice(newScoreIndex, 0, newEntry);
+    // save the score to the local storage
+    localStorage.setItem('scoreList', JSON.stringify(savedScores));
+    // put the scores to the table result
     generateHighscoresTable(); 
+
   }
   
-  function placeEntryInHighscoreList(newEntry, scoreList) {
-    var newScoreIndex = getNewScoreIndex(newEntry, scoreList);
-    scoreList.splice(newScoreIndex, 0, newEntry);
-  }
-  
-  function getNewScoreIndex(newEntry, scoreList) {
+  //  show the results at the end of the Quiz____________ 
+  function sortTheScores(newEntry, scoreList) {
     if (scoreList.length > 0) {
       for (var i = 0; i < scoreList.length; i++) {
         if (scoreList[i].score <= newEntry.score) {
@@ -193,7 +188,7 @@ function processInput(event) {
     return scoreList.length;
   }
 
-  
+//  show the results at the end of the Quiz____________ 
 function showResults(){
     console.log("showresults function");
 
@@ -205,19 +200,39 @@ function showResults(){
     return;
 
 }
-function QuizOver(){
-    console.log("Quiz Over function");
-    clearInterval(totalTimeInterval);
 
-    QuizBox.classList.add("hide");
-    ResultBox.classList.remove("hide");
-    ScoreBox.classList.add("hide");
+//____________________________________Timer Management______________________________________________________
+function startTimer() {
+    totalTimeInterval = setInterval(function() {
+      totalTime--;
+      TimeRemaining.textContent =  totalTime;;
+      
+      if (totalTime <= 0) {
+        QuizOver();
+        console.log("game over due to time");
+        clearInterval(totalTimeInterval);
+        return;
+      }
+  
+    }, 1000);
+  }
+  
+//____________________________________Quiz start, Reset and New question section______________________________
+
+// Start the quiz______________________
+function QuizStart(){
+    console.log("Start the Quiz");
+  
+    startTimer();
     HomeBox.classList.add("hide");
-    showResults();
-    return;
-    
-}
+    QuizBox.classList.remove("hide");
+    ScoreBox.classList.add("hide");
 
+    setAvailableQuestions();
+    getNewQuestion()
+    return;
+}
+// Answer the next question_____________
 function next(){
     console.log("next function");
 
@@ -233,37 +248,22 @@ function next(){
     }
     return;
 }
-/******** TIME ********/ 
-  function startTimer() {
-    totalTimeInterval = setInterval(function() {
-      totalTime--;
-      TimeRemaining.textContent =  totalTime;;
-      
-      if (totalTime <= 0) {
-        QuizOver();
-        console.log("game over due to time");
-        clearInterval(totalTimeInterval);
-        return;
-      }
-  
-    }, 1000);
-  }
-  
 
-function QuizStart(){
-    console.log("Start the Quiz");
-  
-    startTimer();
-    HomeBox.classList.add("hide");
-    QuizBox.classList.remove("hide");
+// Game over section code____________
+function QuizOver(){
+    console.log("Quiz Over function");
+    clearInterval(totalTimeInterval);
+
+    QuizBox.classList.add("hide");
+    ResultBox.classList.remove("hide");
     ScoreBox.classList.add("hide");
-
-    setAvailableQuestions();
-    getNewQuestion()
+    HomeBox.classList.add("hide");
+    showResults();
     return;
+    
 }
 
-
+// Reset the quiz and initilize the variables_______
 function resetQuiz(){
     answersStatus.innerHTML="";
     var optionsLength=currentQuestion.choices.length;
@@ -286,6 +286,7 @@ function resetQuiz(){
      return;
  
 }
+// perform a new quiz
 function tryAgain(){
     ResultBox.classList.add("hide");
     QuizBox.classList.add("hide");
