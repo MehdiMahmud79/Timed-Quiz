@@ -53,14 +53,12 @@ function getResult(choicesElement){
     var tmp=correctAnswers;
     var id=+choicesElement.id;
     for(var i=0;i<optionContainer.children.length;i++){
-    optionContainer.children[i].classList.add("answered");
-    if(i===currentQuestion.answerIndex){
-        optionContainer.children[i].classList.add("correct");
-    }else{
-     
-    // optionContainer.children[i].classList.add("wrong");
+      optionContainer.children[i].classList.add("answered");
+      if(i===currentQuestion.answerIndex){
+          optionContainer.children[i].classList.add("correct");
         }
     }  
+
     nextBtn.disabled=false; 
     if(id===currentQuestion.answerIndex){
         correctAnswers++;
@@ -105,20 +103,15 @@ function getNewQuestion(){
     currentQuestion=availableQuestions[questionIndex];
     questionText.innerHTML=currentQuestion.title;
 
- optionsLength=currentQuestion.choices.length;
+    optionsLength=currentQuestion.choices.length;
 
-//________Creat choices elemets n the page_________________________________
+//________Creat choices elemets on the page_________________________________
 
-// for (var i=0;i<optionsLength;i++){
-//     availableOptions.push(i);
-// }
-// shuffle(availableOptions);
-var i=0;
-animationDelay=0.3;
-
-do{  //creat choices elements in the HTML file
+    animationDelay=0.1; // giving animtion to the chices
+  var i=0;
+  do{  //creat choices elements in the HTML file
     var optionDiv=document.createElement("div");
-
+    
     optionDiv.innerHTML=currentQuestion.choices[i];
     optionDiv.id=i;
 
@@ -287,7 +280,7 @@ function resetQuiz(){
      availableQuestions=[];
      askedQuestions=[];
      availableOptions=[];
-     initialInput.value=""
+     initialInput.value="";
      correctAnswers=0;
      wrongAnswers=0;   
      return;
