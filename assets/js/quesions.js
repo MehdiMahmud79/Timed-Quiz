@@ -6,22 +6,19 @@ var questions = [
     },
     {
       title: "The condition in an if/else statement is enclosed within...",
-      choices: ["quotes", "curly brackets","parentheses",  "square brackets"],
-      answerIndex: 1
+      choices: [ "curly brackets","parentheses","quotes",  "square brackets"],
+      answerIndex: 0
     },
     {
       title: "Arrays in JavaScript can be used to store...",
       choices: [
-        "numbers and strings",
-        "other arrays",
-        "booleans",
-        "all of the above"],
+        "numbers and strings", "other arrays", "booleans", "all of the mentioned"],
       answerIndex: 3
     },
     {
       title:
         "String values must be enclosed within ... when being assigned to variables.",
-      choices: ["commas", "quotes", "parenthese", "curly brackets"],
+      choices: ["commas", "quotes", "parenthese", "none"],
       answerIndex: 1
     },
     {
@@ -37,8 +34,7 @@ var questions = [
     },
     {
         title:"Where in an HTML document is the correct place to refer to an external style sheet?",
-        choices: ["At the end of the document", "In the head section", "In the body section", "just before the footer section"],
-        answerIndex: 1
+        choices: ["At the end of the document", "In the body section","In the head section",  "just before the footer section"],
+        answerIndex: 2
     }
   ];
-  
