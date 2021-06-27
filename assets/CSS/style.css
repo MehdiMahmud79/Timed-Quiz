@@ -149,15 +149,6 @@ body {
 .quiz-box .option-container .option.answered{
   pointer-events: none;
 }
-/* animating the quesion's choices */
-@keyframes fadeIn {
-  0%{
-    opacity:0;
-  }
-  100%{
-    opacity:1;
-  }
-}
 
 .quiz-box .answers-indicator div{
   min-height: 40px;
@@ -177,19 +168,18 @@ body {
   cursor:not-allowed;
 }
 
-.btn{
-  cursor: pointer;
-  border:none;
-  padding:10px 20px;
-  background: rgb(43, 43, 43);
-  color:var(--text);
-  border-radius: 5px;
-  display:inline-block;
-}
-.btn:hover{
-  background: rgb(65, 65, 65);
+/* animating the quesion's choices */
+@keyframes fadeIn {
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
 }
 
+
+/* homeBox styling */
 .home-box ,.result-box, .quiz-box, .score-section{
   box-shadow:  -10px 10px 20px var(--myGreen);
 }
@@ -211,6 +201,7 @@ body {
   padding: 20px auto;
 }
 
+/* result section styling */
 .result-box h1, .score-section h1{
   font-size: 36px;
   line-height: 42px;
@@ -234,6 +225,19 @@ body {
   margin-right: 20px;
 }
 
+/* button styling */
+.btn{
+  cursor: pointer;
+  border:none;
+  padding:10px 20px;
+  background: rgb(43, 43, 43);
+  color:var(--text);
+  border-radius: 5px;
+  display:inline-block;
+}
+.btn:hover{
+  background: rgb(65, 65, 65);
+}
 /*form in the results section styling*/
 
 #initials{
