@@ -178,7 +178,7 @@ function processInput(event) {
   }
   
   function placeEntryInHighscoreList(newEntry, scoreList) {
-    const newScoreIndex = getNewScoreIndex(newEntry, scoreList);
+    var newScoreIndex = getNewScoreIndex(newEntry, scoreList);
     scoreList.splice(newScoreIndex, 0, newEntry);
   }
   
@@ -297,65 +297,51 @@ function tryAgain(){
 }
 
 
-
-
-//Loads table when page loaded
-  
-
+//____________________________________High score section code______________________________
 
 function generateHighscoresTable() {
+    // clear the table
     while (highScoresTable.children.length > 1) {
         highScoresTable.removeChild(highScoresTable.lastChild);
       }
+    //   get the scores from the local storage to put in in th elocal table
   var  highscores = localStorage.getItem("scoreList");
   if (highscores) {
-    addHighscoreTableRows(highscores);
-  } 
+        //generating the Highscore table
+        highscores = JSON.parse(highscores);
+
+        highscores.forEach(function(scoreItem, index) {
+        var rankEl = document.createElement('td');
+        rankEl.textContent = `#${index + 1}`;
+        var CellRank = rankEl;
+        // creat td tag for the score
+        var CellScore = document.createElement('td');
+        CellScore.textContent = scoreItem.score;
+
+        // creat td tag for the Initials
+        var initialsCell = document.createElement('td');
+        initialsCell.textContent = scoreItem.initials;
+
+        // append the score to the HTML  body
+        var highscoreTableRow = createHighscoreTableRow(CellRank, CellScore, initialsCell);
+        highScoresTable.appendChild(highscoreTableRow);
+        });  
+    } 
 }
 
-//Highscore table generation
-function addHighscoreTableRows(highscores) {
-  highscores = JSON.parse(highscores);
-
-  highscores.forEach(function(scoreItem, index) {
-    const rankCell = createRankCell(index + 1);
-    const scoreCell = createScoreCell(scoreItem.score);
-    const initialsCell = createInitialsCell(scoreItem.initials);
-    const highscoreTableRow = createHighscoreTableRow(rankCell, scoreCell, initialsCell);
-    highScoresTable.appendChild(highscoreTableRow);
-  });
-}
-
-function createRankCell(rank) {
-  const rankCell = document.createElement('td');
-  rankCell.textContent = `#${rank}`;
-  return rankCell;
-}
-
-function createScoreCell(score) {
-  const scoreCell = document.createElement('td');
-  scoreCell.textContent = score;
-  return scoreCell;
-}
-
-function createInitialsCell(initials) {
-  const initialsCell = document.createElement('td');
-  initialsCell.textContent = initials;
-  return initialsCell;
-}
-
-function createHighscoreTableRow(rankCell, scoreCell, initialsCell) {
-  const tableRow = document.createElement('tr');
+// transferthe variables to the HTML  body
+function createHighscoreTableRow(rankCell, CellScore, initialsCell) {
+  var tableRow = document.createElement('tr');
   tableRow.appendChild(rankCell);
-  tableRow.appendChild(scoreCell);
+  tableRow.appendChild(CellScore);
   tableRow.appendChild(initialsCell);
   return tableRow;
 }
 
-//Clear table
+//Clear table of Scores and the local storage
 function clearScores() {
     localStorage.setItem('scoreList', []);
     while (highScoresTable.children.length > 1) {
       highScoresTable.removeChild(highScoresTable.lastChild);
     }
-  }
+}
