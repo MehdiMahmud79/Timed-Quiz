@@ -80,8 +80,6 @@ function getResult(choicesElement){
         }else{
           answersStatus.innerHTML= "("+ correctAnswers + ") "+ "Correct answer and (" +  wrongAnswers + ") wrong answers";
         }
-
-    
 }
 // ___________________________get a new question in a random way______________
 function getNewQuestion(){
