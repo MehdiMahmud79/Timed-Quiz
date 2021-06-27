@@ -1,3 +1,4 @@
+/* adding google font to the style */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
 *,
 *::before,
@@ -33,6 +34,7 @@ body {
   transition: all 0.3s ease ;
 }
 
+/* starter page styling */
 .home-box h3{
   font-size: 18px;
   color: #000000;
@@ -52,6 +54,7 @@ body {
   position: relative;
 }
 
+/* this section will style the question box */
 .custom-box{
   max-width: 700px;
   background: var(--boxBcolor);
@@ -108,17 +111,7 @@ body {
 
   border-radius: 20%;
 }
-#initials{
-  text-transform: uppercase;
-}
-#TimeLabel{
-  float:right;
-  margin-top:-30px;
-  font-size: 18px;
-  color:red;
-  font-weight: 800;
-  
-}
+
 .quiz-box .question-text{
   font-size: 22px;
   color: #000000;
@@ -142,6 +135,7 @@ body {
   opacity:0;
   animation: fadeIn 0.4s ease forwards;
 }
+/* styling the correct and wrong answer sections */
 .quiz-box .option-container .option.correct{
   background-color:green;
   font-weight: 800;
@@ -155,6 +149,7 @@ body {
 .quiz-box .option-container .option.answered{
   pointer-events: none;
 }
+/* animating the quesion's choices */
 @keyframes fadeIn {
   0%{
     opacity:0;
@@ -239,8 +234,19 @@ body {
   margin-right: 20px;
 }
 
-/*form*/
+/*form in the results section styling*/
 
+#initials{
+  text-transform: uppercase;
+}
+#TimeLabel{
+  float:right;
+  margin-top:-30px;
+  font-size: 18px;
+  color:red;
+  font-weight: 800;
+  
+}
 .quiz-section{
   position: relative;
   width:100%;
@@ -284,9 +290,7 @@ margin: 20px auto;
 
   }
 
-
-
- /*_________Highscores*****__________*/
+ /*_________Highscores table styling_____________*/
 table {
   border-spacing: 0 0.5em;
 }
