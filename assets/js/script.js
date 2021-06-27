@@ -219,8 +219,30 @@ function startTimer() {
   
 //____________________________________Quiz start, Reset and New question section______________________________
 
+// his function is used to shuffle the options every time you get a new question
+function shuffle(){
+  for (var k=0;k< questions.length;k++){
+       for(var i = 0; i <questions[k].choices.length; i++) {
+        var j = Math.floor(Math.random() * (questions[k].choices.length));
+        var tmp = questions[k].choices[i];
+        questions[k].choices[i] = questions[k].choices[j];
+        questions[k].choices[j] = tmp;
+        if(i===questions[k].answerIndex){
+          questions[k].answerIndex=j;
+        }else if(j===questions[k].answerIndex){
+          questions[k].answerIndex=i;
+        }
+    }
+
+  } 
+
+}
 // Start the quiz______________________
+
 function QuizStart(){
+  // shuffle the question's options
+
+    shuffle()
     console.log("Start the Quiz");
   
     startTimer();
