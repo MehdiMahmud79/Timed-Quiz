@@ -150,6 +150,12 @@ body {
   pointer-events: none;
 }
 
+.quiz-box .option-container .option:hover{
+  color:#0a0038;
+  background-color: aqua;
+  transform: scale(1.01);
+
+}
 .quiz-box .answers-indicator div{
   min-height: 40px;
   width:100%;
@@ -167,6 +173,7 @@ body {
   background-color: rgb(233, 233, 233);
   cursor:not-allowed;
 }
+
 
 /* animating the quesion's choices */
 @keyframes fadeIn {
