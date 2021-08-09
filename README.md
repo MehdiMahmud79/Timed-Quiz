@@ -13,7 +13,7 @@
 
 The following animation shows the web application's appearance and functionality:
 
-![The Password Generator application displays a red button to "Generate Password".](./quiz.gif)
+![The Password Generator application displays a red button to "Generate Password".](./assets/screen.gif)
 
 
 ### The Quiz Description
